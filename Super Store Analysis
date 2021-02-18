@@ -1,0 +1,90 @@
+# EXPLORATORY DATA ANALYSIS
+MANIK PAHALWAN 
+
+IN THIS TASK WE WILL ANALYSE DATA OF A RETAIL STORE AND PERFORM BUISSNESS INTELLIGENCE TO GET A CONCLUSION
+
+# GRIPFEB21
+
+# importing libraries
+import pandas as pd
+from matplotlib import pyplot as plt
+import seaborn as sns
+import numpy as np
+
+
+# Loading the data
+df=pd.read_csv('SampleSuperstore.csv')
+
+# Raeding firt 5 rows 
+df.head
+
+df.shape
+
+df.dtypes
+
+#getting some insight on data
+df.describe()
+
+df.sum()
+
+# defining axis
+y =df['Sales']
+x =df['Category']
+
+plt.scatter(x,y,label='Data Points',color='red',marker='*',s=25)
+plt.title('Buissness Intelligence')
+plt.xlabel('Category')
+plt.ylabel('Sales ')
+plt.grid()
+plt.rcParams['axes.facecolor']='yellow'
+plt.show()
+
+df.groupby('Category')['Sales'].sum().plot.bar()
+
+df.groupby('Region')['Sales'].sum().plot.bar()
+
+# defining axis
+y =df['Profit']
+x =df['Category']
+plt.scatter(x,y,label='Data Points',color='red',marker='*',s=25)
+plt.title('Buissness Intelligence')
+plt.xlabel('Category')
+plt.ylabel('Profit ')
+plt.grid()
+plt.rcParams['axes.facecolor']='yellow'
+plt.show()
+
+df.plot.scatter('Profit','Sales')
+
+df.groupby('State')['Sales'].sum().plot.bar()
+
+df.groupby('Ship Mode')['Sales'].sum().plot.bar()
+
+df.groupby('Ship Mode')['Profit'].sum().plot.bar()
+
+# ANALYSING SUB-CATEGORIES
+
+df.groupby('Sub-Category')['Sales'].sum().plot.bar()
+
+df.groupby('Sub-Category')['Profit'].sum().plot.bar()
+
+# defining axis
+y =df['Sub-Category']
+x =df['Profit']
+plt.scatter(x,y,label='Data Points',color='red',marker='*',s=25)
+plt.title('Buissness Intelligence')
+plt.xlabel('Category')
+plt.ylabel('Profit ')
+plt.grid()
+plt.rcParams['axes.facecolor']='yellow'
+plt.show()
+
+df.groupby('Sub-Category')['Discount'].sum().plot.bar()
+
+df.groupby('Sub-Category')['Quantity'].sum().plot.bar()
+
+# FINAL ANALYSIS
+Using above Five graphs we conclude that -
+1) We are not selling too many tables ,despite we are not giving too much discount in the tables section still we are loosing     money.Hence, we must consider changing out purchasing policies regarding tables.
+2) We are selling a good quantity of binders, making a lot of profit from that but still almost half of the transictions result in loss.The reason behind so is that  we are giving too much discount for binders.Hence, we must reduce discount provided for this sub-category.  
+3) Copiers are contributing to good amount of sales and provides maximum profit ,but still we are not selling too many of them.In order to increase their selling quantity and hence increasing the profit we must consider giving a reasonable discount.
